@@ -68,8 +68,7 @@ export const NEXT_AUTH = {
           user = await prisma.user.create({
             data: {
               email,
-              name: profile.name,
-              password: '', // Google users won't have a password
+              password: '', 
             },
           });
         }
@@ -77,7 +76,7 @@ export const NEXT_AUTH = {
         return {
           id: user.id.toString(),
           email: user.email,
-          name: user.name,
+
         };
       },
     }),
