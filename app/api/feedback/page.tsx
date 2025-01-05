@@ -26,6 +26,8 @@ export default async function POST(req: NextRequest) {
         projectid: parsedFeedback.data.projectid,
       },
     });
+    console.log(submittedFeedback);
+
     return NextResponse.json(
       {
         message: 'Feedback submitted successfully',
