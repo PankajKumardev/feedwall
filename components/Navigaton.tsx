@@ -29,7 +29,7 @@ export default function Navigaton() {
     return (
       <div>
         <div>
-          <div className="sticky top-0 z-50 py-2 w-full  bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-6 ">
+          <div className="sticky top-0 z-50 py-2 w-full  bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sm:px-6 px-4 ">
             <div className="container flex h-16 items-center justify-between">
               <div className="flex gap-4 items-center">
                 <Link href="/" className="flex items-center space-x-2">
@@ -52,18 +52,20 @@ export default function Navigaton() {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                {socialLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-md text-muted-foreground hover:text-foreground transition-colors"
-                    aria-label={link.name}
-                  >
-                    <link.icon className="h-5 w-5" />
-                  </a>
-                ))}
+                <div className="hidden  md:flex md:flex-row md:gap-4">
+                  {socialLinks.map((link) => (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-md text-muted-foreground hover:text-foreground transition-colors"
+                      aria-label={link.name}
+                    >
+                      <link.icon className="h-5 w-5" />
+                    </a>
+                  ))}
+                </div>
 
                 <button
                   onClick={() => signOut()}
@@ -82,7 +84,7 @@ export default function Navigaton() {
     return (
       <div>
         <div>
-          <div className="sticky top-0 z-50 py-2 w-full  bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-6 ">
+          <div className="sticky top-0 z-50 py-2 w-full  bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sm:px-6 px-4 ">
             <div className="container flex h-16 items-center justify-between">
               <div className="flex gap-4 items-center">
                 <Link href="/" className="flex items-center space-x-2">
@@ -96,18 +98,20 @@ export default function Navigaton() {
                 </Link>
               </div>
               <div className="flex items-center gap-4">
-                {socialLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-md text-muted-foreground hover:text-foreground transition-colors"
-                    aria-label={link.name}
-                  >
-                    <link.icon className="h-5 w-5" />
-                  </a>
-                ))}
+                <div className="hidden  md:flex md:flex-row md:gap-4">
+                  {socialLinks.map((link) => (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-md text-muted-foreground hover:text-foreground transition-colors"
+                      aria-label={link.name}
+                    >
+                      <link.icon className="h-5 w-5" />
+                    </a>
+                  ))}
+                </div>
 
                 <button
                   onClick={() => signIn()}
