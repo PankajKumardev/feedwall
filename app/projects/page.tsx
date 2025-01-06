@@ -1,4 +1,9 @@
-export default function Page() { 
+import CreateProjectDialog from '@/components/create-project-dialog';
+import ProjectCard from '@/components/Project-Card';
+import prisma from '@/lib/db';
+
+export default async function Page() {
+  const projects = await prisma.project.findMany();
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
       <header className="text-center mb-10">
@@ -15,8 +20,11 @@ export default function Page() {
         </p>
       </header>
 
-      <div>
-        
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projects.map((project) => (
+          <ProjectCard key={project.id} project={{ ...project, id: project.id.toString() }} />
+        ))}
+        <CreateProjectDialog />
       </div>
     </div>
   );
