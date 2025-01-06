@@ -61,7 +61,7 @@ export default function FeedbackWidget({
   );
 
   return (
-    <div className="fixed bottom-4 right-4">
+    <div className="fixed bottom-4 right-4 md:bottom-8 md:right-8">
       <Dialog>
         <DialogTrigger asChild>
           <Button
@@ -73,7 +73,7 @@ export default function FeedbackWidget({
             <span className="sr-only">Open feedback form</span>
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[425px] w-full max-w-full px-4 py-6 sm:px-6 sm:py-8">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-center">
               Feedback
