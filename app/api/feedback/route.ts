@@ -4,7 +4,7 @@ import { z } from 'zod';
 
 const feedbackSchema = z.object({
   name: z.string(),
-  email: z.string(),
+  email: z.string().email(),
   feedback: z.string(),
   rating: z.number().int().min(1).max(5),
   projectid: z.number(),
