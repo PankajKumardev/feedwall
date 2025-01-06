@@ -1,8 +1,9 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import getProjectName from '@/app/actions/getProject';
 import { useParams } from 'next/navigation';
 import getFeedbacks from '@/app/actions/getFeedback';
+import { AISummary } from '@/app/actions/Ai';
 
 export default function Page() {
   const { id } = useParams();
@@ -20,11 +21,35 @@ export default function Page() {
     | null
   >(null);
 
+  const [summary, setSummary] = useState<string>(' ');
+
+  async function getSummary(
+    feedbacks:
+      | {
+          id: number;
+          name: string;
+          email: string;
+          createdAt: Date;
+          feedback: string;
+          rating: number;
+          projectid: number;
+        }[]
+      | null
+  ) {
+    if (feedbacks) {
+      const summary = await AISummary(feedbacks);
+      if (summary) {
+        setSummary(summary);
+      }
+    }
+  }
+
   useEffect(() => {
     async function fetchProjectName() {
       if (id) {
         const projectName = await getProjectName(Number(id));
         const Feedbacks = await getFeedbacks(Number(id));
+
         if (projectName !== undefined) {
           setProject(projectName);
         }
@@ -70,6 +95,10 @@ export default function Page() {
       ) : (
         <p>No feedbacks available.</p>
       )}
+      <div>
+        <button onClick={() => getSummary(feedbacks)}>get summary</button>
+      </div>
+      <p>{summary}</p>
     </div>
   );
 }
