@@ -1,8 +1,14 @@
 import CreateProjectDialog from '@/components/create-project-dialog';
 import ProjectCard from '@/components/Project-Card';
 import prisma from '@/lib/db';
+import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
 
 export default async function Page() {
+  const session = await getServerSession();
+  if (!session) {
+    redirect('/api/auth/signin');
+  }
   const projects = await prisma.project.findMany();
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
@@ -22,7 +28,10 @@ export default async function Page() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project) => (
-          <ProjectCard key={project.id} project={{ ...project, id: project.id.toString() }} />
+          <ProjectCard
+            key={project.id}
+            project={{ ...project, id: project.id.toString() }}
+          />
         ))}
         <CreateProjectDialog />
       </div>

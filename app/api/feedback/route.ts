@@ -10,7 +10,7 @@ const feedbackSchema = z.object({
   projectid: z.number(),
 });
 
-export default async function POST(req: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
     const feedback = await req.json();
     const parsedFeedback = feedbackSchema.safeParse(feedback);
