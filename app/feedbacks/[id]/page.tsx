@@ -6,6 +6,7 @@ import { CSVLink } from 'react-csv';
 import { ClipLoader } from 'react-spinners';
 import {
   Search,
+  SortAsc,
   Download,
   Star,
   Trash2,
@@ -42,6 +43,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { MarqueeSelector } from '@/components/MarqueeFeedback';
 
 interface Feedback {
   id: number;
@@ -68,7 +70,7 @@ export default function Page() {
   const [currentPage, setCurrentPage] = useState(1);
   const [isSummaryLoading, setIsSummaryLoading] = useState(false);
 
-  const feedbacksPerPage = 4;
+  const feedbacksPerPage = 6;
 
   async function getSummary(feedbacks: Feedback[] | null) {
     if (feedbacks) {
@@ -126,6 +128,8 @@ export default function Page() {
 
   const handleDelete = async (id: number) => {
     setIsDeleting(true);
+    // Implement your delete logic here
+    // For example: await deleteFeedback(id);
     setFeedbacks((prev) =>
       prev ? prev.filter((feedback) => feedback.id !== id) : null
     );
@@ -155,23 +159,39 @@ export default function Page() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <style jsx global>{`
+        @keyframes marquee {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
+        .animate-marquee {
+          animation: marquee 20s linear infinite;
+        }
+        .animate-marquee-reverse {
+          animation: marquee 20s linear infinite reverse;
+        }
+      `}</style>
       <header className="text-center mb-8">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
           <span className="text-sky-500">Feed</span>
           <span className="text-gray-900 dark:text-gray-100">-Wall</span>{' '}
           Feedbacks
         </h1>
-        <div className="mt-2 text-lg text-gray-600 dark:text-gray-400">
+        <p className="mt-2 text-lg text-gray-600 dark:text-gray-400">
           Review and manage customer feedbacks for {project}
-        </div>
+        </p>
       </header>
 
       <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 mb-6">
         <h2 className="text-xl font-semibold mb-2">Customer Feedbacks</h2>
-        <div className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
           📊 View, search, and manage feedback from your customers. Use the
           tools below to filter and analyze the data.
-        </div>
+        </p>
         <div className="flex flex-col sm:flex-row justify-between items-center mb-4 space-y-4 sm:space-y-0">
           <div className="flex items-center w-full">
             <Search className="w-5 h-5 text-gray-400 mr-2" />
@@ -180,7 +200,7 @@ export default function Page() {
               placeholder="Search feedbacks..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full sm:w-[95%] "
+              className="w-full"
             />
           </div>
           <div className="flex items-center space-x-4 w-full sm:w-auto justify-end">
@@ -202,7 +222,7 @@ export default function Page() {
             <CSVLink
               data={filteredFeedbacks || []}
               filename={`${project}_feedbacks.csv`}
-              className="flex items-center px-3 py-4 border rounded-md border-neutral-200 bg-white text-sm ring-offset-white placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-950 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:placeholder:text-neutral-400 dark:focus:ring-neutral-300 active:text-red-700 active:bg-red-50 h-9 hover:bg-gray-100 dark:hover:bg-neutral-900 whitespace-nowrap"
+              className="flex items-center px-3 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors text-sm h-9"
             >
               <Download className="w-4 h-4 mr-2" />
               Export CSV
@@ -256,34 +276,35 @@ export default function Page() {
                         </DialogTrigger>
                         <DialogContent>
                           <DialogHeader>
-                            <DialogTitle>{feedback.name}</DialogTitle>
+                            <DialogTitle>Feedback Details</DialogTitle>
                             <DialogDescription>
-                              <span className="flex items-center space-x-2 my-2 pb-4">
-                                <span>{feedback.email}</span>
-                                <span className="flex items-center">
-                                  {[...Array(5)].map((_, i) => (
-                                    <Star
-                                      key={i}
-                                      className={`w-4 h-4 inline-block ${
-                                        i < feedback.rating
-                                          ? 'text-yellow-400 fill-current'
-                                          : 'text-gray-300'
-                                      }`}
-                                    />
-                                  ))}
-                                </span>
-                              </span>
-                              <span className="my-2 border-t border-gray-200 dark:border-gray-700"></span>
+                              Full feedback information
                             </DialogDescription>
                           </DialogHeader>
-                          <div className=" text-sm space-y-2">
-                            <div className="text-gray-700 dark:text-gray-300">
+                          <div className="mt-4 text-sm space-y-2">
+                            <p>
+                              <span className="font-semibold">
+                                {feedback.name}
+                              </span>{' '}
+                              • {feedback.email} •
+                              {[...Array(5)].map((_, i) => (
+                                <Star
+                                  key={i}
+                                  className={`w-4 h-4 inline-block ${
+                                    i < feedback.rating
+                                      ? 'text-yellow-400 fill-current'
+                                      : 'text-gray-300'
+                                  }`}
+                                />
+                              ))}
+                            </p>
+                            <p className="text-gray-700 dark:text-gray-300">
                               {feedback.feedback}
-                            </div>
-                            <div className="text-gray-500 text-xs">
+                            </p>
+                            <p className="text-gray-500 text-xs">
                               Submitted:{' '}
                               {new Date(feedback.createdAt).toLocaleString()}
-                            </div>
+                            </p>
                           </div>
                           <div className="mt-4 flex justify-end">
                             <Button
@@ -311,11 +332,11 @@ export default function Page() {
               </TableBody>
             </Table>
             <div className="flex justify-between items-center mt-4">
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Showing {indexOfFirstFeedback + 1} to{' '}
                 {Math.min(indexOfLastFeedback, filteredFeedbacks?.length || 0)}{' '}
                 of {filteredFeedbacks?.length} entries
-              </div>
+              </p>
               <div className="flex space-x-2">
                 <Button
                   onClick={() => paginate(currentPage - 1)}
@@ -338,19 +359,19 @@ export default function Page() {
           </>
         ) : (
           <div className="text-center py-8">
-            <div className="text-lg text-gray-600 dark:text-gray-400">
+            <p className="text-lg text-gray-600 dark:text-gray-400">
               No feedbacks available 😢
-            </div>
+            </p>
           </div>
         )}
       </div>
 
       <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 mb-6">
         <h2 className="text-xl font-semibold mb-2">Embed Code</h2>
-        <div className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
           🔗 Use this code to add the feedback widget to your website. Copy and
           paste it into your HTML.
-        </div>
+        </p>
         <EmbededCode
           tab1Content={
             <div>
@@ -399,12 +420,14 @@ export default function Page() {
         />
       </div>
 
+      {feedbacks && <MarqueeSelector feedbacks={feedbacks} />}
+
       <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
         <h2 className="text-xl font-semibold mb-2">Feedback Summary</h2>
-        <div className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
           🤖 Get an AI-generated summary of your customer feedbacks to quickly
           understand trends and insights.
-        </div>
+        </p>
         <Button
           onClick={() => getSummary(feedbacks)}
           className="mb-4"
@@ -421,7 +444,7 @@ export default function Page() {
         </Button>
         {summary && (
           <div className="border border-gray-200 dark:border-gray-700 p-4 rounded-md">
-            <div className="text-sm">{summary}</div>
+            <p className="text-sm">{summary}</p>
           </div>
         )}
       </div>
