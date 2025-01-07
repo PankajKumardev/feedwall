@@ -32,7 +32,6 @@ export default function FeedbackWidget({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the feedback data to your server
     try {
       axios.post('http://localhost:3000/api/feedback', {
         projectid: projectId,
