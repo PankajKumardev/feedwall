@@ -283,7 +283,7 @@ export default function Page() {
                               <span className="block w-full h-px bg-gray-200 dark:bg-gray-700 my-2"></span>
                             </DialogDescription>
                           </DialogHeader>
-                            <div className="text-sm space-y-2 max-h-40 overflow-y-auto">
+                          <div className="text-sm space-y-2 max-h-40 overflow-y-auto">
                             <div className="text-gray-700 dark:text-gray-300">
                               {feedback.feedback}
                             </div>
@@ -291,7 +291,7 @@ export default function Page() {
                               Submitted:{' '}
                               {new Date(feedback.createdAt).toLocaleString()}
                             </div>
-                            </div>
+                          </div>
                           <div className="mt-4 flex justify-end">
                             <Button
                               variant="outline"
@@ -405,9 +405,7 @@ export default function Page() {
           }
         />
       </div>
-      <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
-        {feedbacks && <MarqueeSelector feedbacks={feedbacks} />}
-      </div>
+      {feedbacks && <MarqueeSelector feedbacks={feedbacks} />}
 
       <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
         <h2 className="text-xl font-semibold mb-2">Feedback Summary</h2>
