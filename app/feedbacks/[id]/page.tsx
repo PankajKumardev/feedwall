@@ -126,8 +126,6 @@ export default function Page() {
 
   const handleDelete = async (id: number) => {
     setIsDeleting(true);
-    // Implement your delete logic here
-    // For example: await deleteFeedback(id);
     setFeedbacks((prev) =>
       prev ? prev.filter((feedback) => feedback.id !== id) : null
     );
@@ -275,7 +273,7 @@ export default function Page() {
                                   ))}
                                 </span>
                               </span>
-                              <div className="my-2 border-t border-gray-200 dark:border-gray-700"></div>
+                              <span className="my-2 border-t border-gray-200 dark:border-gray-700"></span>
                             </DialogDescription>
                           </DialogHeader>
                           <div className=" text-sm space-y-2">

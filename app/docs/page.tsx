@@ -3,7 +3,7 @@ import FeedbackWidget from "@/components/ui/FeedbackWidget";
 const page = () => {
   return <div>
     <FeedbackWidget
-    projectId={1}
+    projectId={2}
     websiteName="sad"
     />
   </div>;
