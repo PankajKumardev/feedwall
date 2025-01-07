@@ -1,4 +1,3 @@
-import { MarqueeDemo } from "@/components/marq";
 import FeedbackWidget from "@/components/ui/FeedbackWidget";
 
 const page = () => {
@@ -12,3 +11,6 @@ const page = () => {
 };
 
 export default page;
+
+
+
