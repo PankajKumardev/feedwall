@@ -1,16 +1,11 @@
-import FeedbackWidget from "@/components/ui/FeedbackWidget";
+import FeedbackWidget from '@/components/ui/FeedbackWidget';
 
 const page = () => {
-  return <div>
-    <FeedbackWidget
-    projectId={2}
-    websiteName="sad"
-    />
-
-  </div>;
+  return (
+    <div>
+      <FeedbackWidget projectId={1} websiteName="sad" />
+    </div>
+  );
 };
 
 export default page;
-
-
-

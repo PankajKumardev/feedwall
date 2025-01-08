@@ -46,6 +46,7 @@ import {
 } from '@/components/ui/select';
 
 import { MarqueeSelector } from '@/components/MarqueeFeedback';
+import { deleteFeedback } from '@/app/actions/deleteFeedback';
 
 interface Feedback {
   id: number;
@@ -133,6 +134,7 @@ export default function Page() {
 
   const handleDelete = async (id: number) => {
     setIsDeleting(true);
+    await deleteFeedback(id);
     setFeedbacks((prev) =>
       prev ? prev.filter((feedback) => feedback.id !== id) : null
     );

@@ -29,22 +29,26 @@ export default function FeedbackWidget({
   const [feedback, setFeedback] = useState('');
   const [rating, setRating] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      axios.post('http://localhost:3000/api/feedback', {
+      await axios.post('http://localhost:3000/api/feedback', {
         projectid: projectId,
         name,
         email,
         feedback,
         rating,
       });
+      setIsSubmitted(true);
+      setError(null);
     } catch (err) {
       console.error(err);
+      setError(
+        'An error occurred while submitting your feedback. Please try again.'
+      );
     }
-
-    setIsSubmitted(true);
   };
 
   const PoweredByLink = () => (
@@ -72,7 +76,7 @@ export default function FeedbackWidget({
             <span className="sr-only">Open feedback form</span>
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px] w-full max-w-full px-4 py-6 sm:px-6 sm:py-8">
+        <DialogContent className="w-full max-w-full px-4 py-6 sm:max-w-[425px] sm:px-6 sm:py-8 h-auto max-h-[96vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-center">
               Feedback
@@ -94,6 +98,9 @@ export default function FeedbackWidget({
                 Your feedback is incredibly valuable to us. It helps us improve
                 and serve you better.
               </p>
+              {error && (
+                <p className="text-center text-red-500 mb-4">{error}</p>
+              )}
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <Label htmlFor="name">Name</Label>

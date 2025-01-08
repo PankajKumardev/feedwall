@@ -11,6 +11,7 @@ import {
 import { CodeBlock } from '@/components/ui/code-block';
 import { cn } from '@/lib/utils';
 import Marquee from '@/components/ui/marquee';
+import Link from 'next/link';
 
 interface Feedback {
   id: number;
@@ -168,21 +169,19 @@ export function MarqueeDemo() {
         <div className="mb-4">
           <h3 className="text-lg font-semibold mb-2">Preview</h3>
           <div className="relative flex items-center justify-center overflow-hidden rounded-lg bg-background md:shadow-xl p-2 md:p-4">
-            <Marquee pauseOnHover className="[--duration:40s]">
+            <Marquee pauseOnHover className="[--duration:35s]">
               {selectedFeedbacks.map((feedback, index) => (
                 <ReviewCard
                   key={feedback.id}
                   img={`https://avatar.vercel.sh/${feedback.name
                     .toLowerCase()
-                    .replace(' ', '')}`}
+                    .replace(/ /g, '-')}`}
                   name={feedback.name}
-                  username={`@${feedback.name.toLowerCase().replace(' ', '')}`}
+                  username={`@${feedback.email.toLowerCase().replace(' ', '')}`}
                   body={feedback.feedback}
                 />
               ))}
             </Marquee>
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-background"></div>
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-background"></div>
           </div>
         </div>
       )}
@@ -208,6 +207,17 @@ export function MarqueeDemo() {
             />
           </DialogContent>
         </Dialog>
+        <div className="flex items-center space-x-2 mt-4 text-red-600 dark:text-red-400  dark:border-red-400 p-2 rounded">
+          <p className="text-sm">
+            <Link href="/docs">
+              {' '}
+              <span role="img" aria-label="notice">
+                🚨
+              </span>{' '}
+              For installation Marquee, see Docs
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
