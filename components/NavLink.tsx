@@ -20,7 +20,7 @@ export function NavLink({ href, children }: NavLinkProps) {
       className={cn(
         'px-4 py-2 rounded-md text-sm font-medium transition-colors',
         isActive
-          ? 'bg-secondary text-sky-500'
+          ? 'bg-secondary text-blue-500'
           : 'text-muted-foreground hover:text-gray-400'
       )}
     >

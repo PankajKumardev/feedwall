@@ -31,7 +31,7 @@ export default function Navigation() {
         <div className="flex gap-4 items-center">
           <Link href="/" className="flex items-center space-x-2">
             <ListMinus />
-            <h1 className="text-xl text-sky-500 font-bold cursor-pointer">
+            <h1 className="text-xl text-blue-500 font-bold cursor-pointer">
               Feed
               <span className="text-slate-800 dark:text-[#E7E9EC]">-Wall</span>
             </h1>
@@ -62,14 +62,14 @@ export default function Navigation() {
           {session.data?.user ? (
             <button
               onClick={() => signOut()}
-              className="px-6 py-1 bg-sky-500 text-white rounded-md hover:bg-sky-600 transition-colors"
+              className="px-6 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
             >
               Logout
             </button>
           ) : (
             <button
               onClick={() => signIn()}
-              className="px-6 py-1 bg-sky-500 text-white rounded-md hover:bg-sky-600 transition-colors"
+              className="px-6 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
             >
               Login
             </button>

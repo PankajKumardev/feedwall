@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <div>
       <div className="h-full sm:block hidden">
-        <Meteors number={5} />
+        <Meteors number={10} />
       </div>
       <div className="flex flex-col items-center max-w-4xl mx-auto mt-16">
         <div className="flex items-center gap-2 px-4 py-2 mb-4 rounded-full bg-[#E7E9EC] text-slate-900 text-sm font-medium">

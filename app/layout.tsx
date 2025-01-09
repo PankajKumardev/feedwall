@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Providers } from './provider';
 import Navigaton from '@/components/Navigaton';
 
+
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -37,7 +38,8 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-             <Navigaton/>
+            <Navigaton />
+           
             <main className="">{children}</main>
           </ThemeProvider>
         </body>
