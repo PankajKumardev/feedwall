@@ -1,20 +1,28 @@
+'use client';
 import Hero from '@/components/Hero';
 
+import { useEffect } from 'react';
+
 function FeedBackWidget() {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://feedback-widget-weld.vercel.app/feedback-widget.js';
+    script.type = 'module';
+    document.body.appendChild(script);
+  }, []);
+
   return (
     <>
-      <div id="feedback-widget"></div>
-      <script src="https://feedback-widget-lovat-nine.vercel.app/feedback.js"></script>
-      <script>
-        window.loadFeedbackWidget('yourProjectId', 'YourWebsiteName');
-      </script>
+      {/* @ts-ignore */}
+      <feedback-widget projectId="1" websiteName="YourWebsiteName" />
     </>
   );
 }
+
 export default function Home() {
   return (
     <div>
-      <FeedBackWidget />
+      {/* <FeedBackWidget /> */}
       <Hero />
     </div>
   );

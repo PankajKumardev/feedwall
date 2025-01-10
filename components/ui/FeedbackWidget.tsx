@@ -70,7 +70,7 @@ export default function FeedbackWidget({
           <Button
             variant="outline"
             size="icon"
-            className="rounded-full h-12 w-12 bg-primary text-primary-foreground hover:bg-primary/90"
+            className="rounded-full h-12 w-12 bg-primary text-primary-foreground"
           >
             <MessageSquarePlus className="h-6 w-6" />
             <span className="sr-only">Open feedback form</span>

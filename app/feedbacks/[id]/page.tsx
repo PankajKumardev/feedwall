@@ -365,11 +365,10 @@ export default function Page() {
             <div>
               <CodeBlock
                 code={`<body>
-  <div style="position: fixed; bottom: 15px; right: 15px">
-    <widget-web-component theme="solarFlare" website-name="${project}" projectid="${id}"></widget-web-component>
-  </div>
-
-  <script src="https://widget.opinify.in/widget.umd.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config = {darkMode: 'class'} </script>
+<script type="module" src="https://feedback-widget-weld.vercel.app/feedback-widget.js"></script>
+<feedback-widget projectId=${id} websiteName=${project}></feedback-widget>
 </body>`}
                 language="html"
                 filename="index.html"
@@ -379,27 +378,23 @@ export default function Page() {
           tab2Content={
             <div>
               <CodeBlock
-                code={`declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      "widget-web-component": React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      > & {
-        projectid: number;
-        theme: string;
-      };
-    }
-  }
-}
+                code={`import { useEffect } from 'react';
 
-<body>
-  <div style={{position: "fixed", bottom: "15px", right: "15px"}}>
-    <widget-web-component theme="solarFlare" website-name="${project}" projectid="${id}" />
-  </div>
+function FeedBackWidget() {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://feedback-widget-weld.vercel.app/feedback-widget.js';
+    script.type = 'module';
+    document.body.appendChild(script);
+  }, []);
 
-  <script async src="https://widget.opinify.in/widget.umd.js"></script>
-</body>`}
+  return (
+    <>
+      {/* @ts-ignore */}
+      <feedback-widget projectId=${id} websiteName=${project} />
+    </>
+  );
+}`}
                 language="typescript"
                 filename="index.tsx"
               />
