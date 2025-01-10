@@ -378,7 +378,9 @@ export default function Page() {
           tab2Content={
             <div>
               <CodeBlock
-                code={`import { useEffect } from 'react';
+                code={` "use client";
+                  
+import { useEffect } from 'react';
 
 function FeedBackWidget() {
   useEffect(() => {

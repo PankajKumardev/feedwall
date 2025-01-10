@@ -26,7 +26,7 @@ const socialLinks = [
 export default function Navigation() {
   const session = useSession();
   return (
-    <div className="sticky top-0 z-50 py-2 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sm:px-6 px-4">
+    <div className="sticky top-0 z-50 py-4 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sm:px-6 px-4 border-b border-gray-200 dark:border-gray-700">
       <div className="container flex h-12 items-center justify-between">
         <div className="flex gap-4 items-center">
           <Link href="/" className="flex items-center space-x-2">
