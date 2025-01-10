@@ -83,7 +83,10 @@ export default function Home() {
           Feed-wall offers a powerful suite of features to make feedback
           collection and showcasing effortless.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-12 text-center px-4 sm:px-0 max-w-7xl mx-auto">
+        <div className="text-center text-3xl text-slate-800 dark:text-[#E7E9EC] font-medium mt-20">
+          Powereful Features!
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-8     text-center px-4 sm:px-0 max-w-7xl mx-auto">
           {[
             {
               icon: <Bot className="w-6 h-6" />,
