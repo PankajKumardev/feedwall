@@ -235,7 +235,7 @@ export default function Home() {
             className="flex items-center justify-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700"
             href={'/api/auth/signin'}
           >
-            Get Started Now
+            Create Your account
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

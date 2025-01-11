@@ -4,6 +4,7 @@ import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Providers } from './provider';
 import Navigaton from '@/components/Navigaton';
+import Footer from '@/components/Footer';
 
 
 const geistSans = Geist({
@@ -41,6 +42,7 @@ export default function RootLayout({
             <Navigaton />
            
             <main className="">{children}</main>
+            <Footer/>
           </ThemeProvider>
         </body>
       </html>
