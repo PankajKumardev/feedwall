@@ -3,10 +3,8 @@
 import {
   ArrowRight,
   Layout,
-  MessageSquare,
   Rows2,
   Sparkles,
-  SquareDashedKanban,
   BarChart,
   Download,
   Eye,
@@ -16,8 +14,8 @@ import {
 import Meteors from './ui/meteors';
 import Link from 'next/link';
 import { FaGithub, FaStar } from 'react-icons/fa';
-import TextRevealByWord from './ui/text-reveal';
 import { MarqueeDemo } from './MarqueeDemo';
+import Accordian from './Accordion';
 
 function HowItWorksStep({
   number,
@@ -211,6 +209,35 @@ export default function Home() {
 
         <div>
           <MarqueeDemo />
+        </div>
+      </div>
+      <div className="mt-20 px-4 max-w-7xl mx-auto text-center">
+        <h2 className="text-2xl sm:text-3xl text-slate-800 dark:text-[#E7E9EC] font-medium">
+          FAQ's
+        </h2>
+        <p className="text-base sm:text-lg text-slate-800 dark:text-slate-500 mt-4 w-full sm:w-3/4 md:w-1/2 mx-auto px-4">
+          Some common FAQ's about Feed-Wall
+        </p>
+      </div>
+      <div>
+        <Accordian />
+      </div>
+      <div className="text-center mt-20 max-w-7xl mx-auto mb-8">
+        <h2 className="text-2xl sm:text-3xl text-slate-800 dark:text-[#E7E9EC] font-medium">
+          Ready to Elevate Your Feedback Collection?
+        </h2>
+        <p className="text-base sm:text-lg text-slate-800 dark:text-slate-500 mt-4 w-full sm:w-3/4 md:w-1/2 mx-auto px-8">
+          Start showcasing your journey to better user feedback insights today
+          with Feed-Wall and see the difference it makes.
+        </p>
+        <div className="flex justify-center mt-8">
+          <Link
+            className="flex items-center justify-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700"
+            href={'/api/auth/signin'}
+          >
+            Get Started Now
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </div>
     </div>
