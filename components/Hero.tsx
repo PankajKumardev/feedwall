@@ -16,6 +16,7 @@ import Link from 'next/link';
 import { FaGithub, FaStar } from 'react-icons/fa';
 import { MarqueeDemo } from './MarqueeDemo';
 import Accordian from './Accordion';
+import { motion } from 'framer-motion';
 
 function HowItWorksStep({
   number,
@@ -43,7 +44,12 @@ function HowItWorksStep({
 
 export default function Home() {
   return (
-    <div className="px-4 sm:px-6 lg:px-8 ">
+    <motion.div
+      initial={{ filter: 'blur(10px)' }}
+      animate={{ filter: 'blur(0px)' }}
+      transition={{ duration: 1 }}
+      className="px-4 sm:px-6 lg:px-8"
+    >
       <div className="h-full sm:block hidden">
         <Meteors number={5} />
       </div>
@@ -110,7 +116,7 @@ export default function Home() {
         <div className="text-center text-3xl text-slate-800 dark:text-[#E7E9EC] font-medium mt-20">
           Powereful Features!
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-8     text-center px-4 sm:px-0 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-8 text-center px-4 sm:px-0 max-w-7xl mx-auto">
           {[
             {
               icon: <Bot className="w-6 h-6" />,
@@ -151,15 +157,14 @@ export default function Home() {
           ].map((feature, index) => (
             <div key={index} className="width-fit text-left">
               <div className="flex items-center gap-2">
-                {' '}
-                <div className="mb-2 w-fit rounded-lg  p-1 text-center dark:text-white text-slate-900  ">
+                <div className="mb-2 w-fit rounded-lg p-1 text-center dark:text-white text-slate-900">
                   {feature.icon}
                 </div>
                 <div className="text-md mb-1 font-normal text-gray-900 dark:text-gray-100">
                   {feature.title}
                 </div>
               </div>
-              <div className="font-regular max-w-sm text-xs text-gray-600  dark:text-gray-400">
+              <div className="font-regular max-w-sm text-xs text-gray-600 dark:text-gray-400">
                 {feature.description}
               </div>
             </div>
@@ -167,7 +172,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="text-center mt-20  ">
+      <div className="text-center mt-20">
         <h2 className="text-3xl text-gray-900 dark:text-gray-100">
           How Feed-Wall Works
         </h2>
@@ -192,12 +197,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* <div className="text-center mt-20">
-        <TextRevealByWord
-          text="Feed-Wall will revolutionize how you gather and showcase feedback."
-        />
-      </div> */}
-
       <div className="mt-20 px-4 max-w-7xl mx-auto text-center">
         <h2 className="text-2xl sm:text-3xl text-slate-800 dark:text-[#E7E9EC] font-medium">
           See Feed-Wall in Action
@@ -206,11 +205,11 @@ export default function Home() {
           Explore a live demo to understand how Feed-Wall can transform your
           feedback collection and presentation.
         </p>
-
         <div>
           <MarqueeDemo />
         </div>
       </div>
+
       <div className="mt-20 px-4 max-w-7xl mx-auto text-center">
         <h2 className="text-2xl sm:text-3xl text-slate-800 dark:text-[#E7E9EC] font-medium">
           FAQ's
@@ -218,10 +217,11 @@ export default function Home() {
         <p className="text-base sm:text-lg text-slate-800 dark:text-slate-500 mt-4 w-full sm:w-3/4 md:w-1/2 mx-auto px-4">
           Some common FAQ's about Feed-Wall
         </p>
+        <div>
+          <Accordian />
+        </div>
       </div>
-      <div>
-        <Accordian />
-      </div>
+
       <div className="text-center mt-20 max-w-7xl mx-auto mb-8">
         <h2 className="text-2xl sm:text-3xl text-slate-800 dark:text-[#E7E9EC] font-medium">
           Ready to Elevate Your Feedback Collection?
@@ -240,6 +240,6 @@ export default function Home() {
           </Link>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
