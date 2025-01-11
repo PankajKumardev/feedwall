@@ -44,7 +44,7 @@ export default function Navigation() {
   }, []);
 
   return (
-    <div className="sticky top-0 z-50 py-4 w-full bg-white supports-[backdrop-filter]:bg-white dark:bg-[#121212] dark:supports-[backdrop-filter]:bg-[#121212]/90 sm:px-6 px-4 border-b border-gray-200 dark:border-gray-700">
+    <div className="sticky top-0 z-50 py-4 w-full bg-white/95 supports-[backdrop-filter]:bg-white/80 dark:bg-[#121212]/95 backdrop-blur dark:supports-[backdrop-filter]:bg-[#121212]/90 sm:px-6 px-4 border-b border-gray-200 dark:border-gray-700">
       <div className="container flex h-12 items-center justify-between">
         <div className="flex gap-4 items-center">
           <Link href="/" className="flex items-center space-x-2">
@@ -128,7 +128,7 @@ export default function Navigation() {
               >
                 <X className="h-6 w-6" />
               </button>
-              <div className="flex flex-col items-center justify-center flex-grow gap-4">
+              <div className="flex flex-col items-center justify-center mb-8 flex-grow gap-4">
                 <nav className="flex flex-col gap-4">
                   {navLinks.map((link) => (
                     <NavLink
@@ -151,7 +151,7 @@ export default function Navigation() {
                       aria-label={link.name}
                     >
                       <link.icon className="h-5 w-5" />
-                      <span className='text-sm'>{link.name}</span>
+                      <span className="text-sm">{link.name}</span>
                     </a>
                   ))}
                 </div>
