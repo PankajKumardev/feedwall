@@ -36,6 +36,7 @@ export async function POST(req: NextRequest) {
       },
     });
 
+    console.log(submittedFeedback);
     return NextResponse.json(
       {
         message: 'Feedback submitted successfully',
