@@ -92,10 +92,10 @@ export default function Home() {
 
       <div className="mt-20 px-4 max-w-7xl mx-auto text-center">
         <h2 className="text-2xl sm:text-3xl text-slate-800 dark:text-[#E7E9EC] font-medium">
-          FAQ's
+          FAQ&#39;s
         </h2>
         <p className="text-base sm:text-lg text-slate-800 dark:text-slate-500 mt-4 w-full sm:w-3/4 md:w-1/2 mx-auto px-4">
-          Some common FAQ's about Feed-Wall
+          Some common FAQ&#39;s about Feed-Wall
         </p>
         <div className="text-left">
           <Accordian />

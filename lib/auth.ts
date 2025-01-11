@@ -23,7 +23,7 @@ export const NEXT_AUTH = {
           placeholder: 'password',
         },
       },
-      async authorize(credentials: any) {
+      async authorize(credentials) {
         const parsedCredentials = credentialsSchema.safeParse(credentials);
         if (!parsedCredentials.success) {
           throw new Error('Invalid credentials');
@@ -68,7 +68,7 @@ export const NEXT_AUTH = {
           user = await prisma.user.create({
             data: {
               email,
-              password: '', 
+              password: '',
             },
           });
         }
@@ -76,7 +76,6 @@ export const NEXT_AUTH = {
         return {
           id: user.id.toString(),
           email: user.email,
-
         };
       },
     }),

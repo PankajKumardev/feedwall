@@ -75,7 +75,7 @@ export function MarqueeSelector({ feedbacks }: MarqueeSelectorProps) {
   };
 
   const generateMarqueeCode = () => {
-    const reviews = selectedFeedbacks.map((feedback, index) => ({
+    const reviews = selectedFeedbacks.map((feedback) => ({
       name: feedback.name,
       username: `@${feedback.name.toLowerCase().replace(' ', '')}`,
       body: feedback.feedback,
@@ -170,7 +170,7 @@ export function MarqueeFeedback() {
           <h3 className="text-lg font-semibold mb-2">Preview</h3>
           <div className="relative flex items-center justify-center overflow-hidden rounded-lg bg-background md:shadow-xl p-2 md:p-4">
             <Marquee pauseOnHover className="[--duration:35s]">
-              {selectedFeedbacks.map((feedback, index) => (
+              {selectedFeedbacks.map((feedback) => (
                 <ReviewCard
                   key={feedback.id}
                   img={`https://avatar.vercel.sh/${feedback.name

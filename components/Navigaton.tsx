@@ -42,9 +42,8 @@ export default function Navigation() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-
   return (
-    <div className="sticky top-0 z-50 py-4 w-full bg-white/95 supports-[backdrop-filter]:bg-white/80 dark:bg-[#121212]/95 backdrop-blur dark:supports-[backdrop-filter]:bg-[#121212]/90 sm:px-6 px-4 border-b border-gray-200 dark:border-gray-700">
+    <div className="sticky top-0 z-50 py-4 w-full bg-white/80 backdrop-blur-md dark:bg-[#121212]/90 sm:px-6 px-4 border-b border-gray-200 dark:border-gray-700">
       <div className="container flex h-12 items-center justify-between">
         <div className="flex gap-4 items-center">
           <Link href="/" className="flex items-center space-x-2">
@@ -113,7 +112,7 @@ export default function Navigation() {
       {isMenuOpen && (
         <>
           <div
-            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+            className="fixed inset-0 z-40"
             onClick={() => setIsMenuOpen(false)}
           />
           <div
@@ -128,7 +127,7 @@ export default function Navigation() {
               >
                 <X className="h-6 w-6" />
               </button>
-              <div className="flex flex-col items-center justify-center mb-8 flex-grow gap-4">
+              <div className="flex flex-col items-center justify-center flex-grow gap-4 mb-8">
                 <nav className="flex flex-col gap-4">
                   {navLinks.map((link) => (
                     <NavLink

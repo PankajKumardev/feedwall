@@ -2,7 +2,6 @@ import {
   FileText,
   Shield,
   AlertCircle,
-  RefreshCw,
   Home,
   Lock,
   Mail,
@@ -48,7 +47,7 @@ export default function TermsOfService() {
           </h2>
         </div>
         <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-          The service is provided "as is" without warranties of any kind. You
+          The service is provided &quot;as is&quot; without warranties of any kind. You
           agree to use the service responsibly and in compliance with applicable
           laws.
         </p>

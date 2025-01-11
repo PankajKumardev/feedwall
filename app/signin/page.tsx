@@ -122,7 +122,7 @@ export default function SignInSignUp() {
           </button>
         </div>
         <p className="mt-4 text-sm text-center text-gray-600 dark:text-gray-400">
-          By continuing, you agree to Feed-Wall's Terms of Service and Privacy
+          By continuing, you agree to Feed-Wall&#39;s Terms of Service and Privacy
           Policy.
         </p>
       </div>

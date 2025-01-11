@@ -85,7 +85,7 @@ export default function Page() {
         const summary = await AISummary(feedbacks);
         if (summary) {
           setSummary(summary);
-          let temp = await marked(summary);
+          const temp = await marked(summary);
           setSantizedSummary(temp);
         }
       }

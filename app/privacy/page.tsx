@@ -3,8 +3,6 @@ import {
   Info,
   RefreshCw,
   Home,
-  FileText,
-  AlertCircle,
   Lock,
   Mail,
 } from 'lucide-react';

@@ -15,7 +15,10 @@ export async function POST(req: NextRequest) {
     const feedback = await req.json();
     const parsedFeedback = feedbackSchema.safeParse(feedback);
     if (!parsedFeedback.success) {
-      return NextResponse.json({ error: 'Invalid feedback' }, { status: 400 });
+      return NextResponse.json(
+        { error: 'Invalid feedback' },
+        { status: 400, headers: { 'Access-Control-Allow-Origin': '*' } }
+      );
     }
     const submittedFeedback = await prisma.feedback.create({
       data: {
@@ -32,10 +35,13 @@ export async function POST(req: NextRequest) {
       {
         message: 'Feedback submitted successfully',
       },
-      { status: 200 }
+      { status: 200, headers: { 'Access-Control-Allow-Origin': '*' } }
     );
   } catch (err: any) {
     console.error(err.message);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    return NextResponse.json(
+      { error: err.message },
+      { status: 500, headers: { 'Access-Control-Allow-Origin': '*' } }
+    );
   }
 }
