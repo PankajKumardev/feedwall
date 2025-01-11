@@ -28,10 +28,10 @@ export default function Navigation() {
   const session = useSession();
   return (
     <motion.div
-    initial={{ filter: 'blur(10px)' }}
-    animate={{ filter: 'blur(0px)' }}
-    transition={{ duration: 1 }}
-      className="sticky top-0 z-50 py-4 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sm:px-6 px-4 border-b border-gray-200 dark:border-gray-700"
+      initial={{ filter: 'blur(10px)' }}
+      animate={{ filter: 'blur(0px)' }}
+      transition={{ duration: 1 }}
+      className="sticky top-0 z-50 py-4 w-full bg-white/95 supports-[backdrop-filter]:bg-white/80 SSSdark:bg-[#121212]/95 backdrop-blur dark:supports-[backdrop-filter]:bg-[#121212]/90 sm:px-6 px-4 border-b border-gray-200 dark:border-gray-700"
     >
       <div className="container flex h-12 items-center justify-between">
         <div className="flex gap-4 items-center">
