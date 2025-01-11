@@ -17,7 +17,13 @@ export async function POST(req: NextRequest) {
     if (!parsedFeedback.success) {
       return NextResponse.json(
         { error: 'Invalid feedback' },
-        { status: 400, headers: { 'Access-Control-Allow-Origin': '*' } }
+        {
+          status: 400,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Content-Type',
+          },
+        }
       );
     }
     const submittedFeedback = await prisma.feedback.create({
@@ -29,19 +35,29 @@ export async function POST(req: NextRequest) {
         projectid: parsedFeedback.data.projectid,
       },
     });
-    console.log(submittedFeedback);
 
     return NextResponse.json(
       {
         message: 'Feedback submitted successfully',
       },
-      { status: 200, headers: { 'Access-Control-Allow-Origin': '*' } }
+      {
+        status: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        },
+      }
     );
   } catch (err: any) {
-    console.error(err.message);
     return NextResponse.json(
       { error: err.message },
-      { status: 500, headers: { 'Access-Control-Allow-Origin': '*' } }
+      {
+        status: 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        },
+      }
     );
   }
 }
