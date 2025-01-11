@@ -11,8 +11,8 @@ export default async function Page() {
   }
   const projects = await prisma.project.findMany();
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12">
-      <header className="text-center mb-10">
+    <div className="max-w-4xl mx-auto px-6 py-12 min-h-screen">
+      <header className="text-center mb-16">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
           <span className="font-bold text-blue-400">
             Feed

@@ -8,9 +8,9 @@ interface FooterProps {
 }
 
 const navLinks = [
-  { name: 'Components', href: '/components' },
+  { name: 'Home', href: '/' },
   { name: 'Docs', href: '/docs' },
-  { name: 'Showcase', href: '/showcase' },
+  { name: 'Projects', href: '/projects' },
 ] as const;
 
 const Footer: React.FC<FooterProps> = ({
