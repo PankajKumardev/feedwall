@@ -16,10 +16,36 @@ import {
 import Meteors from './ui/meteors';
 import Link from 'next/link';
 import { FaGithub, FaStar } from 'react-icons/fa';
+import TextRevealByWord from './ui/text-reveal';
+import { MarqueeDemo } from './MarqueeDemo';
+
+function HowItWorksStep({
+  number,
+  title,
+  description,
+}: {
+  number: number;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="flex flex-col items-center text-center">
+      <div className="w-12 h-12 rounded-full bg-[#E7E9EC] text-slate-900 flex items-center justify-center text-xl font-bold mb-4">
+        {number}
+      </div>
+      <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
+        {title}
+      </h3>
+      <p className="text-gray-600 dark:text-gray-400 text-normal px-12">
+        {description}
+      </p>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="px-4 sm:px-6 lg:px-8">
+    <div className="px-4 sm:px-6 lg:px-8 ">
       <div className="h-full sm:block hidden">
         <Meteors number={5} />
       </div>
@@ -49,7 +75,7 @@ export default function Home() {
           <ArrowRight className="w-4 h-4" />
         </button>
         <Link
-          href="https://github.com/preetsuthar17/HextaUI"
+          href="https://github.com/pankajKumardev/feedwall"
           target="_blank"
           className="px-6 bg-gradient-to-b hover:bg-primary/10 transition-all py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center w-full sm:w-auto shadow-inner shadow-black/10 hover group"
         >
@@ -62,7 +88,7 @@ export default function Home() {
 
       <div className="mt-20 grid grid-cols-3 px-4 max-w-3xl mx-auto">
         <div className="text-center text-lg text-slate-800 dark:text-[#E7E9EC] flex flex-col items-center">
-          <Sparkles className="w-6 h-6 mb-2" />
+          <Bot className="w-6 h-6 mb-2" />
           <span>AI Summary</span>
         </div>
         <div className="text-center text-lg text-slate-800 dark:text-[#E7E9EC] flex flex-col items-center">
@@ -70,7 +96,7 @@ export default function Home() {
           <span>Embed Widget</span>
         </div>
         <div className="text-center text-lg text-slate-800 dark:text-[#E7E9EC] flex flex-col items-center">
-          <Rows2 strokeWidth={3} className="w-6 h-6 mb-2" />
+          <Rows2 strokeWidth={2} className="w-6 h-6 mb-2" />
           <span>Showcase</span>
         </div>
       </div>
@@ -140,6 +166,51 @@ export default function Home() {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      <div className="text-center mt-20  ">
+        <h2 className="text-3xl text-gray-900 dark:text-gray-100">
+          How Feed-Wall Works
+        </h2>
+        <div className="mt-12 sm:px-20">
+          <div className="grid md:grid-cols-3 gap-4">
+            <HowItWorksStep
+              number={1}
+              title="Sign Up"
+              description="Create your account in minutes with our simple and secure registration process."
+            />
+            <HowItWorksStep
+              number={2}
+              title="Collect Feedback"
+              description="Easily embed our widget on your site and start collecting valuable feedback from your users."
+            />
+            <HowItWorksStep
+              number={3}
+              title="Analyze & Showcase"
+              description="Analyze the feedback and showcase the most impactful insights to drive growth."
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* <div className="text-center mt-20">
+        <TextRevealByWord
+          text="Feed-Wall will revolutionize how you gather and showcase feedback."
+        />
+      </div> */}
+
+      <div className="mt-20 px-4 max-w-7xl mx-auto text-center">
+        <h2 className="text-2xl sm:text-3xl text-slate-800 dark:text-[#E7E9EC] font-medium">
+          See Feed-Wall in Action
+        </h2>
+        <p className="text-base sm:text-lg text-slate-800 dark:text-slate-500 mt-4 w-full sm:w-3/4 md:w-1/2 mx-auto px-4">
+          Explore a live demo to understand how Feed-Wall can transform your
+          feedback collection and presentation.
+        </p>
+
+        <div>
+          <MarqueeDemo />
         </div>
       </div>
     </div>

@@ -122,9 +122,9 @@ const ReviewCard = ({
   );
 };
 
-export function MarqueeDemo() {
+export function MarqueeFeedback() {
   return (
-    <div className="relative flex items-center justify-center overflow-hidden rounded-lg bg-background md:shadow-xl p-2 md:p-4">
+    <div className="relative flex items-center justify-center overflow-hidden rounded-lg bg-background  p-2 md:p-4">
       <Marquee pauseOnHover className="[--duration:40s]">
         {reviews.map((review) => (
           <ReviewCard key={review.username} {...review} />
