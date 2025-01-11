@@ -8,33 +8,32 @@ import {
 const faqData = [
   {
     value: 'item-1',
-    question: 'What is Opinify?',
+    question: 'What is Feed-Wall?',
     answer:
-      'Opinify is a feedback form integration website that is free to use and highly simplified.',
+      'Feed-Wall is a platform for easy feedback form integration, featuring AI summaries and showcases.',
   },
   {
     value: 'item-2',
-    question: 'How can Opinify improve user feedback collection?',
+    question: 'How can Feed-Wall improve user feedback collection?',
     answer:
-      'Opinify improves user feedback collection by providing an easy-to-use and integrate feedback form, making it simple for users to give feedback.',
+      'Feed-Wall streamlines feedback collection with intuitive and integrable forms.',
   },
   {
     value: 'item-3',
-    question: 'What are the key features of Opinify?',
+    question: 'What are the key features of Feed-Wall?',
     answer:
-      'Key features of Opinify include ease of use, seamless integration, and a simplified interface for collecting feedback from users.',
+      'Feed-Wall offers user-friendliness, seamless integration, and a simplified interface.',
   },
   {
     value: 'item-4',
     question: 'How secure is the data collected by Feed-Wall?',
-    answer:
-      'Feed-Wall ensures that all collected data is securely stored and encrypted, adhering to industry-standard security practices.',
+    answer: 'Feed-Wall ensures data security through secure storage.',
   },
   {
     value: 'item-5',
     question: 'Can I export the feedback data?',
     answer:
-      'Yes, you can easily export all collected feedback data as a CSV file for further analysis and record-keeping.',
+      'Yes, you can export feedback data as a CSV file for analysis and record-keeping.',
   },
 ];
 
@@ -44,7 +43,7 @@ const Accordian = () => {
       <Accordion
         type="single"
         collapsible
-        className="  mx-auto w-[70vw] text-slate-800 dark:text-[#E7E9EC] text-sm "
+        className="  mx-auto max-w-[70vw] text-slate-800 dark:text-[#E7E9EC] text-sm "
       >
         {faqData.map((item) => (
           <AccordionItem key={item.value} value={item.value}>

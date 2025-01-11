@@ -4,7 +4,6 @@ import { ThemeToggle } from './ThemeToggle';
 import { GithubIcon, ListMinus, TwitterIcon } from 'lucide-react';
 import Link from 'next/link';
 import { NavLink } from './NavLink';
-import { motion } from 'framer-motion';
 
 const navLinks = [
   { name: 'Docs', href: '/docs' },
@@ -27,12 +26,7 @@ const socialLinks = [
 export default function Navigation() {
   const session = useSession();
   return (
-    <motion.div
-      initial={{ filter: 'blur(10px)' }}
-      animate={{ filter: 'blur(0px)' }}
-      transition={{ duration: 1 }}
-      className="sticky top-0 z-50 py-4 w-full bg-white/95 supports-[backdrop-filter]:bg-white/80 SSSdark:bg-[#121212]/95 backdrop-blur dark:supports-[backdrop-filter]:bg-[#121212]/90 sm:px-6 px-4 border-b border-gray-200 dark:border-gray-700"
-    >
+    <div className="sticky top-0 z-50 py-4 w-full bg-white/95 supports-[backdrop-filter]:bg-white/80 SSSdark:bg-[#121212]/95 backdrop-blur dark:supports-[backdrop-filter]:bg-[#121212]/90 sm:px-6 px-4 border-b border-gray-200 dark:border-gray-700">
       <div className="container flex h-12 items-center justify-between">
         <div className="flex gap-4 items-center">
           <Link href="/" className="flex items-center space-x-2">
@@ -83,6 +77,6 @@ export default function Navigation() {
           <ThemeToggle />
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

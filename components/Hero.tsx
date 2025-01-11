@@ -13,7 +13,7 @@ export default function Home() {
     <motion.div
       initial={{ filter: 'blur(10px)' }}
       animate={{ filter: 'blur(0px)' }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.5 }}
       className="px-4 sm:px-6 lg:px-8"
     >
       <div className="h-full sm:block hidden">
