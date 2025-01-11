@@ -40,10 +40,13 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col sm:flex-row justify-center mt-8 gap-4 px-4">
-        <button className="flex items-center justify-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 w-full sm:w-auto">
+        <Link
+          className="flex items-center justify-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 w-full sm:w-auto"
+          href={'signin'}
+        >
           Get Started Now
           <ArrowRight className="w-4 h-4" />
-        </button>
+        </Link>
         <Link
           href="https://github.com/pankajKumardev/feedwall"
           target="_blank"
@@ -110,7 +113,7 @@ export default function Home() {
         <div className="flex justify-center mt-8">
           <Link
             className="flex items-center justify-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700"
-            href={'/api/auth/signin'}
+            href={'/signin'}
           >
             Create Your account
             <ArrowRight className="w-4 h-4" />

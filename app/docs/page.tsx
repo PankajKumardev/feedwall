@@ -1,8 +1,14 @@
 import { Info, Rocket, Package, CheckCircle } from 'lucide-react';
 import { CodeBlock } from '@/components/ui/code-block';
 import Accordian from '@/components/Accordion';
+import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
 
-export default function Docs() {
+export default async function Docs() {
+  const session = await getServerSession();
+  if (!session) {
+    redirect('/api/auth/signin');
+  }
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
       <header className="text-center mb-10">
