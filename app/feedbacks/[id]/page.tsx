@@ -80,7 +80,7 @@ export default function Page() {
     if (feedbacks) {
       setIsSummaryLoading(true);
       if (feedbacks.length === 0) {
-        setSummary('No feedbacks available');
+        setSummary('<h1>no summary</h1>');
       } else {
         const summary = await AISummary(feedbacks);
         if (summary) {
