@@ -128,7 +128,7 @@ export default function Navigation() {
               >
                 <X className="h-6 w-6" />
               </button>
-              <div className="flex flex-col items-center justify-center flex-grow gap-6">
+              <div className="flex flex-col items-center justify-center flex-grow gap-4">
                 <nav className="flex flex-col gap-4">
                   {navLinks.map((link) => (
                     <NavLink
@@ -151,7 +151,7 @@ export default function Navigation() {
                       aria-label={link.name}
                     >
                       <link.icon className="h-5 w-5" />
-                      <span>{link.name}</span>
+                      <span className='text-sm'>{link.name}</span>
                     </a>
                   ))}
                 </div>
