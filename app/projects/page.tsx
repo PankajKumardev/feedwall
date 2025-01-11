@@ -6,10 +6,19 @@ import { redirect } from 'next/navigation';
 
 export default async function Page() {
   const session = await getServerSession();
+
   if (!session) {
-    redirect('/api/auth/signin');
+    redirect('/signin');
   }
-  const projects = await prisma.project.findMany();
+  const user = session?.user;
+  const projects = await prisma.project.findMany({
+    where: {
+      user: {
+        email: user?.email,
+      },
+    },
+  });
+
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 min-h-screen">
       <header className="text-center mb-16">

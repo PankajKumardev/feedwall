@@ -36,13 +36,15 @@ export default function Navigation() {
               <span className="text-slate-800 dark:text-[#E7E9EC]">-Wall</span>
             </h1>
           </Link>
-          <nav className="hidden md:flex gap-1">
-            {navLinks.map((link) => (
-              <NavLink key={link.href} href={link.href}>
-                {link.name}
-              </NavLink>
-            ))}
-          </nav>
+          {session.data?.user ? (
+            <nav className="hidden md:flex gap-1">
+              {navLinks.map((link) => (
+                <NavLink key={link.href} href={link.href}>
+                  {link.name}
+                </NavLink>
+              ))}
+            </nav>
+          ) : null}
         </div>
         <div className="flex items-center gap-4">
           <div className="hidden md:flex md:flex-row md:gap-4">
