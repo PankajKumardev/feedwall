@@ -15,7 +15,7 @@ const navLinks = [
 const socialLinks = [
   {
     name: 'GitHub',
-    href: 'https://github.com/pankajkumardev/ui-unify',
+    href: 'https://github.com/pankajkumardev/feedwall',
     icon: GithubIcon,
   },
   {
