@@ -127,7 +127,7 @@ export default function Navigation() {
               >
                 <X className="h-6 w-6" />
               </button>
-              <div className="flex flex-col items-center justify-center flex-grow gap-4 mb-8">
+              <div className="flex flex-col items-center flex-grow gap-4 mt-20">
                 <nav className="flex flex-col gap-4">
                   {navLinks.map((link) => (
                     <NavLink
