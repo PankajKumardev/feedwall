@@ -55,7 +55,9 @@ export default function ProjectCard({ project }: { project: Project }) {
             className="text-blue-500 dark:text-blue-500"
             target="_blank"
           >
-            {project.url}
+            {project.url.length > 30
+              ? `${project.url.substring(0, 30)}...`
+              : project.url}
           </Link>
         </p>
         <p className="text-sm text-gray-600 dark:text-gray-400">
