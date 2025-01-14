@@ -103,7 +103,7 @@ const Footer: React.FC<FooterProps> = ({
             </div>
             <div>
               <a
-                href={`mailto:pankajams1234@gmail.com`}
+                href={`mailto:pankajk.tech2@gmail.com`}
                 className="text-sm hover:underline"
               >
                 {email}
