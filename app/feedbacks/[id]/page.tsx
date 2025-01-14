@@ -48,7 +48,7 @@ import {
 import { MarqueeSelector } from '@/components/MarqueeFeedback';
 import { deleteFeedback } from '@/app/actions/deleteFeedback';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 interface Feedback {
   id: number;
@@ -63,8 +63,15 @@ interface Feedback {
 export default function Page() {
   const route = useRouter();
   const session = useSession();
+
+  useEffect(() => {
+    if (!session.data?.user) {
+      route.push('/signin');
+    }
+  }, [session, route]);
+
   if (!session.data?.user) {
-    route.push('/auth/signin');
+    return null;
   }
   const { id } = useParams();
   const [project, setProject] = useState<string | null>(null);
