@@ -63,16 +63,6 @@ interface Feedback {
 export default function Page() {
   const route = useRouter();
   const session = useSession();
-
-  useEffect(() => {
-    if (!session.data?.user) {
-      route.push('/signin');
-    }
-  }, [session, route]);
-
-  if (!session.data?.user) {
-    return null;
-  }
   const { id } = useParams();
   const [project, setProject] = useState<string | null>(null);
   const [feedbacks, setFeedbacks] = useState<Feedback[] | null>(null);
@@ -87,6 +77,16 @@ export default function Page() {
   const [currentPage, setCurrentPage] = useState(1);
   const [isSummaryLoading, setIsSummaryLoading] = useState(false);
   const [santizedSummary, setSantizedSummary] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!session.data?.user) {
+      route.push('/signin');
+    }
+  }, [session, route]);
+
+  if (!session.data?.user) {
+    return null;
+  }
 
   const feedbacksPerPage = 4;
 
