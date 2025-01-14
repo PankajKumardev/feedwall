@@ -84,15 +84,14 @@ export default function Page() {
     }
   }, [session, route]);
 
-  if (!session.data?.user) {
-    return null;
-  }
-
   const feedbacksPerPage = 4;
 
   async function getSummary(feedbacks: Feedback[] | null) {
     if (feedbacks) {
-      setIsSummaryLoading(true);
+      if (!session.data?.user) {
+        return null;
+      }
+
       if (feedbacks.length === 0) {
         setSummary('<h1>no summary</h1>');
       } else {
