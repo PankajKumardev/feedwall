@@ -1,36 +1,136 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# FeedWall
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+![image](https://github.com/user-attachments/assets/eaa0dbc7-c2ac-4236-ae0d-2f9cf7d65e30)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+![Stars](https://img.shields.io/github/stars/PankajKumardev/feedwall?style=social) ![Forks](https://img.shields.io/github/forks/PankajKumardev/feedwall?style=social) ![Issues](https://img.shields.io/github/issues/PankajKumardev/feedwall)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌟 Overview
 
-## Learn More
+FeedWall allows users to embed a feedback widget into their projects and receive feedback directly from their site visitors. The feedback is stored in a central database, and users can view, sort, and analyze feedback easily. With AI-powered insights, users can get a summarized view of the pros and cons of their feedback, and even select specific feedback to showcase with an embed code.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 📝 Feedback Widgets
 
-## Deploy on Vercel
+- Embed customizable feedback widgets into any project.
+- Collect and display feedback from visitors directly on your website.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 🔍 Feedback Management
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- View, sort, and filter feedback by name, date, and rating.
+- Download feedback in CSV format for offline analysis.
+
+### 🤖 AI-Powered Insights
+
+- Get AI-generated summaries of feedback, highlighting pros and cons.
+- Select specific feedback (1-6 entries) to showcase with an embed code.
+
+### 🌐 Deployment
+
+- Hosted on **Vercel**.
+
+---
+
+## 💻 Tech Stack
+
+| **Category**   | **Technology**                      |
+| -------------- | ----------------------------------- |
+| Frontend       | Next.js, TailwindCSS                |
+| Backend        | Next.js API, Prisma, PostgreSQL     |     
+| AI Integration | Gemini API                          |
+| Tools          | TypeScript, Zod, Docker             |
+| Authentication | NextAuth                            |
+| Deployment     | Vercel                              |
+
+---
+
+## 📥 Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/PankajKumardev/feedwall.git
+   cd feedwall
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Set up environment variables:
+   - Copy `.env.example` to `.env`.
+   - Add required keys.
+4. **Initialize the database:**
+   ```bash
+   npx prisma generate
+   npx prisma migrate dev
+   ```
+5. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+---
+
+## 🤝 Contribution Guidelines
+
+### 🌱 How to Get Involved
+
+1. **Fork the repository** by clicking the "Fork" button.
+2. **Clone your fork:**
+   ```bash
+   git clone https://github.com/pankajkumardev/feedwall.git
+   ```
+3. **Create a new branch:**
+   ```bash
+   git checkout -b feature/<feature-name>
+   ```
+4. **Make changes** and commit:
+   ```bash
+   git add .
+   git commit -m "Your descriptive commit message"
+   ```
+5. **Push changes:**
+   ```bash
+   git push origin <your-branch-name>
+   ```
+6. Open a pull request.
+
+### 📌 Suggested Contributions
+
+- Enhance widget customization features.
+- Add more AI-driven feedback analysis options.
+- Improve feedback sorting and filtering mechanisms.
+
+---
+
+## 🌟 Stargazers & Forkers
+
+We appreciate your support! 🌟🍴
+
+[![Stargazers](https://img.shields.io/github/stars/PankajKumardev/feedwall)](https://github.com/PankajKumardev/feedwall/stargazers) [![Forks](https://img.shields.io/github/forks/PankajKumardev/feedwall)](https://github.com/PankajKumardev/feedwall/network/members)
+
+---
+
+## 🛡 License
+
+FeedWall is available under the MIT License. Feel free to use and modify responsibly.
+
+---
+
+## 📖 Changelog
+
+Refer to [`CHANGELOG.md`](https://github.com/PankajKumardev/feedwall/blob/main/CHANGELOG.md) for updates.
+
+---
+
+## 📬 Contact
+
+For queries or collaborations:
+
+- Email: [pankajams1234@gmail.com](mailto:pankajams1234@gmail.com)
+- LinkedIn: [Pankaj Kumar](https://www.linkedin.com/in/pankajkumardev0/)
+- Twitter: [@pankajkumar_dev](https://x.com/pankajkumar_dev)
