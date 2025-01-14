@@ -5,7 +5,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Providers } from './provider';
 import Navigaton from '@/components/Navigaton';
 import Footer from '@/components/Footer';
-
+import { Analytics } from "@vercel/analytics/react"
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -40,7 +40,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Navigaton />
-           
+           <Analytics/>
             <main className="">{children}</main>
             <Footer/>
           </ThemeProvider>
