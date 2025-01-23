@@ -1,11 +1,4 @@
-import {
-  Shield,
-  Info,
-  RefreshCw,
-  Home,
-  Lock,
-  Mail,
-} from 'lucide-react';
+import { Shield, Info, RefreshCw, Home, Lock, Mail } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '../../components/ui/button';
 
@@ -21,13 +14,14 @@ export default function PrivacyPolicy() {
           Privacy Policy
         </h1>
         <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mt-4">
-          Your privacy is extremely important to us. We are committed to protecting it.
+          Your privacy is extremely important to us. We are committed to
+          protecting it.
         </p>
       </header>
 
       <section className="mb-12">
         <div className="flex items-center gap-4 mb-6">
-          <Shield className="w-6 h-6 text-orange-500" />
+          <Shield className="w-6 h-6 text-blue-500" />
           <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
             No Data Collection
           </h2>
@@ -54,7 +48,7 @@ export default function PrivacyPolicy() {
 
       <section className="mb-12">
         <div className="flex items-center gap-4 mb-6">
-          <RefreshCw className="w-6 h-6 text-green-500" />
+          <RefreshCw className="w-6 h-6 text-blue-500" />
           <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
             Changes to This Policy
           </h2>
@@ -67,7 +61,7 @@ export default function PrivacyPolicy() {
 
       <section className="mb-12">
         <div className="flex items-center gap-4 mb-6">
-          <Lock className="w-6 h-6 text-purple-500" />
+          <Lock className="w-6 h-6 text-blue-500" />
           <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
             Password Security
           </h2>
@@ -80,7 +74,7 @@ export default function PrivacyPolicy() {
 
       <section className="mb-12">
         <div className="flex items-center gap-4 mb-6">
-          <Mail className="w-6 h-6 text-teal-500" />
+          <Mail className="w-6 h-6 text-blue-500" />
           <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
             Email and Feedback Storage
           </h2>

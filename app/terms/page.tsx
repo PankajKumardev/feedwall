@@ -27,7 +27,7 @@ export default function TermsOfService() {
 
       <section className="mb-12">
         <div className="flex items-center gap-4 mb-6">
-          <FileText className="w-6 h-6 text-orange-500" />
+          <FileText className="w-6 h-6 text-blue-500" />
           <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
             Acceptance of Terms
           </h2>
@@ -55,7 +55,7 @@ export default function TermsOfService() {
 
       <section className="mb-12">
         <div className="flex items-center gap-4 mb-6">
-          <AlertCircle className="w-6 h-6 text-red-500" />
+          <AlertCircle className="w-6 h-6 text-blue-500" />
           <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
             Limitation of Liability
           </h2>
@@ -68,7 +68,7 @@ export default function TermsOfService() {
 
       <section className="mb-12">
         <div className="flex items-center gap-4 mb-6">
-          <Lock className="w-6 h-6 text-purple-500" />
+          <Lock className="w-6 h-6 text-blue-500" />
           <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
             Password Security
           </h2>
@@ -81,7 +81,7 @@ export default function TermsOfService() {
 
       <section className="mb-12">
         <div className="flex items-center gap-4 mb-6">
-          <Mail className="w-6 h-6 text-teal-500" />
+          <Mail className="w-6 h-6 text-blue-500" />
           <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
             Email Handling
           </h2>
