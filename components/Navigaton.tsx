@@ -43,12 +43,14 @@ export default function Navigation() {
     };
   }, []);
   return (
-    <div className="sticky top-0 z-50 py-4 w-full bg-white/80 backdrop-blur-md dark:bg-[#121212]/90 sm:px-6 px-4 border-b border-gray-200 dark:border-gray-700">
+    <div className="sticky top-0 z-50 py-4 w-full bg-white/80 backdrop-blur-md dark:bg-[#121212]/80 sm:px-6 px-4 =dark:border-gray-700">
       <div className="container flex h-12 items-center justify-between">
         <div className="flex gap-4 items-center">
           <Link href="/" className="flex items-center space-x-2">
-            <ListMinus />
-            <h1 className="text-xl text-blue-500 font-bold cursor-pointer">
+            
+            <ListMinus className='h-6 w-6' />
+          
+            <h1 className="text-xl text-blue-500 font-medium cursor-pointer">
               Feed
               <span className="text-slate-800 dark:text-[#E7E9EC]">-Wall</span>
             </h1>
