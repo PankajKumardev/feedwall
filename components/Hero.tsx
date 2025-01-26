@@ -20,7 +20,7 @@ export default function Home() {
         <Meteors number={5} />
       </div>
 
-      <div className="flex flex-col items-center max-w-4xl mx-auto mt-12 sm:mt-24">
+      <div className="flex flex-col items-center max-w-4xl mx-auto mt-12 sm:mt-20">
         <div className="flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-[#E7E9EC] text-slate-900 text-sm font-medium">
           <Sparkles className="w-4 h-4" />
           <span className="text-sm font-medium">Discover Genuine Feedback</span>
