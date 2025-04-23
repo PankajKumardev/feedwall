@@ -27,12 +27,12 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="text-3xl sm:text-5xl md:text-6xl text-center text-slate-800 dark:text-[#E7E9EC] font-medium">
+      <div className="text-4xl sm:text-5xl md:text-6xl text-center text-slate-800 dark:text-[#E7E9EC] font-medium">
         <h1 className="mb-2">Highlight Genuine Feedback</h1>
         <p>Inspire Significant Transformation 🚀</p>
       </div>
 
-      <div className="mt-8 text-center text-base sm:text-lg text-slate-800 dark:text-[#E7E9EC] w-full sm:w-3/4 md:w-1/2 mx-auto px-4">
+      <div className="mt-8 text-center text-base sm:text-lg text-slate-800 dark:text-[#E7E9EC] w-full sm:w-3/4 md:w-1/2 mx-auto px-8 sm:px-4">
         <p>
           Easily embed feedback collection on your site, showcase genuine
           insights, and drive impactful growth with minimal effort.
