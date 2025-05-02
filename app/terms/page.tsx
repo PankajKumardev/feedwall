@@ -1,17 +1,10 @@
-import {
-  FileText,
-  Shield,
-  AlertCircle,
-  Home,
-  Lock,
-  Mail,
-} from 'lucide-react';
+import { FileText, Shield, AlertCircle, Home, Lock, Mail } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '../../components/ui/button';
 
 export default function TermsOfService() {
   return (
-    <div className="max-w-4xl mx-auto px-6 ">
+    <div className="w-full mx-auto px-6 ">
       <header className="text-center mt-10 pb-10">
         <h1 className="text-3xl  font-bold text-gray-800 dark:text-gray-200">
           <span className="font-bold text-blue-500">
@@ -47,9 +40,9 @@ export default function TermsOfService() {
           </h2>
         </div>
         <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-          The service is provided &quot;as is&quot; without warranties of any kind. You
-          agree to use the service responsibly and in compliance with applicable
-          laws.
+          The service is provided &quot;as is&quot; without warranties of any
+          kind. You agree to use the service responsibly and in compliance with
+          applicable laws.
         </p>
       </section>
 

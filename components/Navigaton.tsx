@@ -44,7 +44,7 @@ export default function Navigation() {
   }, []);
   return (
     <div className="sticky top-0 z-50 py-5 w-full bg-white/90 backdrop-blur-md dark:bg-[#121212]/90 sm:px-6 px-4 dark:border-gray-700">
-      <div className="container flex h-12 items-center justify-between">
+      <div className="flex h-12 items-center justify-between w-full mx-auto ">
         <div className="flex gap-4 items-center">
           <Link href="/" className="flex items-center space-x-2">
             
