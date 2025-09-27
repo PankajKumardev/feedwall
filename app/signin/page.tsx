@@ -6,12 +6,14 @@ import { useRouter } from 'next/navigation';
 import { ArrowRight, Mail, Lock, Info } from 'lucide-react';
 import { FaGoogle } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import Turnstile from 'react-turnstile';
 
 export default function SignInSignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const router = useRouter();
   const session = useSession();
   const user = session.data?.user;
@@ -25,6 +27,25 @@ export default function SignInSignUp() {
     e.preventDefault();
     setIsLoading(true);
     setError('');
+
+    if (!captchaToken) {
+      setError('Please complete the captcha.');
+      setIsLoading(false);
+      return;
+    }
+
+    // Verify Turnstile token server-side
+    const verifyRes = await fetch('/api/verify-turnstile', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: captchaToken }),
+    });
+    const verifyData = await verifyRes.json();
+    if (!verifyData.success) {
+      setError('Captcha verification failed. Please try again.');
+      setIsLoading(false);
+      return;
+    }
 
     const res = await signIn('credentials', {
       email: email,
@@ -92,6 +113,15 @@ export default function SignInSignUp() {
               />
             </div>
           </div>
+          {/* Cloudflare Turnstile Captcha */}
+          <div>
+            <Turnstile
+              sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+              onSuccess={setCaptchaToken}
+              className="my-4 rounded"
+              theme="auto"
+            />
+          </div>
           {error && <p className="text-red-500 text-sm">{error}</p>}
           <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
             <Info className="w-4 h-4" />
@@ -100,7 +130,7 @@ export default function SignInSignUp() {
           <button
             type="submit"
             className="w-full bg-blue-600 hover:bg-blue-700 text-white flex rounded-md h-10 items-center justify-center text-sm"
-            disabled={isLoading}
+            disabled={isLoading || !captchaToken}
           >
             {isLoading ? (
               'Processing...'
@@ -122,8 +152,8 @@ export default function SignInSignUp() {
           </button>
         </div>
         <p className="mt-4 text-sm text-center text-gray-600 dark:text-gray-400">
-          By continuing, you agree to Feed-Wall&#39;s Terms of Service and Privacy
-          Policy.
+          By continuing, you agree to Feed-Wall&#39;s Terms of Service and
+          Privacy Policy.
         </p>
       </div>
     </div>

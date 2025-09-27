@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": " next build",
+    "build": "npx prisma generate && npx prisma migrate deploy && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -45,6 +45,7 @@
     "react-spinners": "^0.15.0",
     "react-syntax-highlighter": "^15.6.1",
     "react-toastify": "^11.0.2",
+    "react-turnstile": "^1.1.4",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.24.1"

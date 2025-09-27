@@ -29,10 +29,14 @@ export default function FeedbackWidget({
   const [feedback, setFeedback] = useState('');
   const [rating, setRating] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
+
     try {
       await axios.post('http://localhost:3000/api/feedback', {
         projectid: projectId,
@@ -42,12 +46,14 @@ export default function FeedbackWidget({
         rating,
       });
       setIsSubmitted(true);
-      setError(null);
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
       setError(
-        'An error occurred while submitting your feedback. Please try again.'
+        err.response?.data?.error ||
+          'An error occurred while submitting your feedback. Please try again.'
       );
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -110,6 +116,7 @@ export default function FeedbackWidget({
                     onChange={(e) => setName(e.target.value)}
                     required
                     className="mt-1"
+                    disabled={isSubmitting}
                   />
                 </div>
                 <div>
@@ -121,6 +128,7 @@ export default function FeedbackWidget({
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     className="mt-1"
+                    disabled={isSubmitting}
                   />
                 </div>
                 <div>
@@ -129,12 +137,16 @@ export default function FeedbackWidget({
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Star
                         key={star}
-                        className={`h-8 w-8 cursor-pointer transition-colors duration-200 ${
+                        className={`h-8 w-8 transition-colors duration-200 ${
                           star <= rating
                             ? 'text-yellow-400 fill-yellow-400'
                             : 'text-gray-300 hover:text-yellow-200'
+                        } ${
+                          isSubmitting
+                            ? 'cursor-not-allowed opacity-50'
+                            : 'cursor-pointer'
                         }`}
-                        onClick={() => setRating(star)}
+                        onClick={() => !isSubmitting && setRating(star)}
                       />
                     ))}
                   </div>
@@ -151,14 +163,28 @@ export default function FeedbackWidget({
                     className="mt-1 resize-none"
                     rows={4}
                     maxLength={250}
+                    disabled={isSubmitting}
                   />
                   <p className="text-sm text-muted-foreground mt-1">
                     {feedback.length}/250 characters
                   </p>
                 </div>
                 <input type="hidden" name="projectId" value={projectId} />
-                <Button type="submit" className="w-full">
-                  <Send className="mr-2 h-4 w-4" /> Submit Feedback
+                <Button
+                  type="submit"
+                  className="w-full"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                      Submitting...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="mr-2 h-4 w-4" /> Submit Feedback
+                    </>
+                  )}
                 </Button>
               </form>
               <PoweredByLink />

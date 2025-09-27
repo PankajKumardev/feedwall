@@ -102,6 +102,12 @@ export const NEXT_AUTH = {
       }
       return session;
     },
+    redirect: ({ url, baseUrl }: { url: string; baseUrl: string }) => {
+      // Ensure redirects always use the correct port
+      if (url.startsWith('/')) return `${baseUrl}${url}`;
+      else if (new URL(url).origin === baseUrl) return url;
+      return baseUrl;
+    },
   },
   pages: {
     signIn: '/signin',

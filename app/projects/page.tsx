@@ -3,6 +3,8 @@ import ProjectCard from '@/components/Project-Card';
 import prisma from '@/lib/db';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
+import { Suspense } from 'react';
+import { LoadingPage } from '@/components/ui/loading';
 
 export default async function Page() {
   const session = await getServerSession();
@@ -35,12 +37,14 @@ export default async function Page() {
       </header>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project) => (
-          <ProjectCard
-            key={project.id}
-            project={{ ...project, id: project.id.toString() }}
-          />
-        ))}
+        <Suspense fallback={<LoadingPage message="Loading projects..." />}>
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              project={{ ...project, id: project.id.toString() }}
+            />
+          ))}
+        </Suspense>
         <CreateProjectDialog />
       </div>
     </div>

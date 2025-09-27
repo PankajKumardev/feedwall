@@ -22,10 +22,12 @@ import { ClipLoader } from 'react-spinners';
 export default function CreateProjectDialog() {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const router = useRouter();
 
   async function onSubmit(formData: FormData) {
     setLoading(true);
+    setError('');
     try {
       await createProject(
         formData.get('name') as string,
@@ -34,7 +36,8 @@ export default function CreateProjectDialog() {
       );
       router.refresh();
       setOpen(false);
-    } catch (err) {
+    } catch (err: any) {
+      setError(err.message || 'Failed to create project. Please try again.');
       console.error(err);
     } finally {
       setLoading(false);
@@ -68,6 +71,13 @@ export default function CreateProjectDialog() {
           }}
         >
           <div className="grid gap-4 py-4">
+            {error && (
+              <div className="col-span-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md">
+                <p className="text-sm text-red-600 dark:text-red-400">
+                  {error}
+                </p>
+              </div>
+            )}
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="name" className="text-right">
                 Name
@@ -78,6 +88,8 @@ export default function CreateProjectDialog() {
                 placeholder="Project name"
                 className="col-span-3"
                 maxLength={15}
+                disabled={loading}
+                required
               />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
@@ -90,6 +102,8 @@ export default function CreateProjectDialog() {
                 placeholder="Project description"
                 maxLength={30}
                 className="col-span-3"
+                disabled={loading}
+                required
               />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
@@ -102,6 +116,8 @@ export default function CreateProjectDialog() {
                 type="url"
                 placeholder="https://example.com"
                 className="col-span-3"
+                disabled={loading}
+                required
               />
             </div>
           </div>

@@ -6,6 +6,7 @@ import { GithubIcon, ListMinus, TwitterIcon, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { NavLink } from './NavLink';
 import { useState, useEffect, useRef } from 'react';
+import { LoadingButton } from './ui/loading';
 
 const navLinks = [
   { name: 'Docs', href: '/docs' },
@@ -28,6 +29,8 @@ const socialLinks = [
 export default function Navigation() {
   const session = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -47,9 +50,8 @@ export default function Navigation() {
       <div className="flex h-12 items-center justify-between w-full mx-auto ">
         <div className="flex gap-4 items-center">
           <Link href="/" className="flex items-center space-x-2">
-            
-            <ListMinus className='h-6 w-6' />
-          
+            <ListMinus className="h-6 w-6" />
+
             <h1 className="text-xl text-blue-500 font-medium cursor-pointer">
               Feed
               <span className="text-slate-800 dark:text-[#E7E9EC]">-Wall</span>
@@ -82,19 +84,37 @@ export default function Navigation() {
           </div>
           <div className="hidden md:block">
             {session.data?.user ? (
-              <button
-                onClick={() => signOut()}
+              <LoadingButton
+                loading={isLoggingOut}
+                loadingText="Logging out..."
+                onClick={async () => {
+                  setIsLoggingOut(true);
+                  try {
+                    await signOut();
+                  } finally {
+                    setIsLoggingOut(false);
+                  }
+                }}
                 className="px-6 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
               >
                 Logout
-              </button>
+              </LoadingButton>
             ) : (
-              <button
-                onClick={() => signIn()}
+              <LoadingButton
+                loading={isLoggingIn}
+                loadingText="Logging in..."
+                onClick={async () => {
+                  setIsLoggingIn(true);
+                  try {
+                    await signIn();
+                  } finally {
+                    setIsLoggingIn(false);
+                  }
+                }}
                 className="px-6 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
               >
                 Login
-              </button>
+              </LoadingButton>
             )}
           </div>
           <ThemeToggle />
@@ -158,25 +178,39 @@ export default function Navigation() {
                 </div>
                 <div>
                   {session.data?.user ? (
-                    <button
-                      onClick={() => {
-                        signOut();
-                        setIsMenuOpen(false);
+                    <LoadingButton
+                      loading={isLoggingOut}
+                      loadingText="Logging out..."
+                      onClick={async () => {
+                        setIsLoggingOut(true);
+                        try {
+                          await signOut();
+                          setIsMenuOpen(false);
+                        } finally {
+                          setIsLoggingOut(false);
+                        }
                       }}
                       className="w-full px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
                     >
                       Logout
-                    </button>
+                    </LoadingButton>
                   ) : (
-                    <button
-                      onClick={() => {
-                        signIn();
-                        setIsMenuOpen(false);
+                    <LoadingButton
+                      loading={isLoggingIn}
+                      loadingText="Logging in..."
+                      onClick={async () => {
+                        setIsLoggingIn(true);
+                        try {
+                          await signIn();
+                          setIsMenuOpen(false);
+                        } finally {
+                          setIsLoggingIn(false);
+                        }
                       }}
                       className="w-full px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
                     >
                       Login
-                    </button>
+                    </LoadingButton>
                   )}
                 </div>
               </div>

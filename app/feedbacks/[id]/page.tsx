@@ -77,6 +77,7 @@ export default function Page() {
   const [currentPage, setCurrentPage] = useState(1);
   const [isSummaryLoading, setIsSummaryLoading] = useState(false);
   const [santizedSummary, setSantizedSummary] = useState<string | null>(null);
+  const [summaryError, setSummaryError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!session.data?.user) {
@@ -92,17 +93,30 @@ export default function Page() {
         return null;
       }
 
-      if (feedbacks.length === 0) {
-        setSummary('<h1>no summary</h1>');
-      } else {
-        const summary = await AISummary(feedbacks);
-        if (summary) {
-          setSummary(summary);
-          const temp = await marked(summary);
-          setSantizedSummary(temp);
+      setIsSummaryLoading(true);
+      setSummaryError(null);
+
+      try {
+        if (feedbacks.length === 0) {
+          setSummary('<h1>No feedback available for summary</h1>');
+        } else {
+          const summary = await AISummary(feedbacks);
+          if (summary) {
+            setSummary(summary);
+            const temp = await marked(summary);
+            setSantizedSummary(temp);
+          } else {
+            setSummaryError('Failed to generate summary. Please try again.');
+          }
         }
+      } catch (error: any) {
+        console.error('Error generating summary:', error);
+        setSummaryError(
+          error.message || 'Error generating summary. Please try again.'
+        );
+      } finally {
+        setIsSummaryLoading(false);
       }
-      setIsSummaryLoading(false);
     }
   }
 
@@ -439,7 +453,16 @@ function FeedBackWidget() {
             'Get Summary'
           )}
         </Button>
-        {summary && (
+
+        {summaryError && (
+          <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md">
+            <p className="text-sm text-red-600 dark:text-red-400">
+              {summaryError}
+            </p>
+          </div>
+        )}
+
+        {summary && !summaryError && (
           <div className="border border-gray-200 dark:border-gray-700 p-4 rounded-md max-h-96 overflow-y-auto">
             {santizedSummary && (
               <div dangerouslySetInnerHTML={{ __html: santizedSummary }} />
