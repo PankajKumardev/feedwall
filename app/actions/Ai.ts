@@ -1,6 +1,8 @@
 'use server';
 
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import rateLimiter, { RATE_LIMITS } from '@/lib/rate-limit';
+import { getServerSession } from 'next-auth';
 
 const googleApiKey = process.env.GOOGLE_API_KEY;
 if (!googleApiKey) {
@@ -24,6 +26,25 @@ export const AISummary = async (
 ): Promise<string | void> => {
   if (!feedbacks || feedbacks.length === 0) {
     throw new Error('No feedbacks provided');
+  }
+
+  // Get user session for rate limiting
+  const session = await getServerSession();
+  if (!session?.user?.email) {
+    throw new Error('You must be logged in to generate AI summaries');
+  }
+
+  // Rate limiting check
+  const rateLimitResult = rateLimiter.checkLimit(
+    `ai:${session.user.email}`,
+    RATE_LIMITS.AI_SUMMARY.limit,
+    RATE_LIMITS.AI_SUMMARY.windowMs
+  );
+
+  if (!rateLimitResult.isAllowed) {
+    throw new Error(
+      `Rate limit exceeded. You can generate ${RATE_LIMITS.AI_SUMMARY.limit} AI summaries per hour. Please try again later.`
+    );
   }
 
   const prompt =

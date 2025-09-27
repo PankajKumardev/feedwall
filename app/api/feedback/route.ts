@@ -14,19 +14,15 @@ export async function POST(req: NextRequest) {
   try {
     const feedback = await req.json();
     const parsedFeedback = feedbackSchema.safeParse(feedback);
+
     if (!parsedFeedback.success) {
       return NextResponse.json(
-        { error: 'Invalid feedback' },
-        {
-          status: 400,
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': 'Content-Type',
-          },
-        }
+        { error: 'Invalid feedback data' },
+        { status: 400, headers: getCorsHeaders() }
       );
     }
-    const submittedFeedback = await prisma.feedback.create({
+
+    await prisma.feedback.create({
       data: {
         name: parsedFeedback.data.name,
         email: parsedFeedback.data.email,
@@ -36,31 +32,24 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    console.log(submittedFeedback);
     return NextResponse.json(
-      {
-        message: 'Feedback submitted successfully',
-      },
-      {
-        status: 200,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': 'Content-Type',
-        },
-      }
+      { message: 'Feedback submitted successfully' },
+      { status: 200, headers: getCorsHeaders() }
     );
   } catch (err: any) {
+    console.error('Feedback submission error:', err);
     return NextResponse.json(
-      { error: err.message },
-      {
-        status: 500,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': 'Content-Type',
-        },
-      }
+      { error: 'Failed to submit feedback' },
+      { status: 500, headers: getCorsHeaders() }
     );
   }
+}
+
+function getCorsHeaders() {
+  return {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
 }
 
 export async function OPTIONS() {

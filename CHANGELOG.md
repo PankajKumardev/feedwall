@@ -2,25 +2,55 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.0.0] - 2025-01-14
+## [1.1.0] - 2024-01-XX
 
 ### Added
-- **Initial Release**: Complete implementation of FeedWall with the following features:
-  - **Feedback Widget**: Embed feedback widgets into user projects.
-  - **Feedback Management**: View, sort, and filter feedback by name, date, and rating.
-  - **AI-Powered Summaries**: AI-generated pros and cons for feedback.
-  - **Showcase & Embed Code**: Select feedback to showcase with an embed code.
-  - **Frontend**: Built with Next.js, TailwindCSS.
-  - **Backend**: Managed with Next.js API, Prisma, and PostgreSQL.
-  - **Deployment**: Deployed on Vercel.
 
-### Changed
-- Improved mobile responsiveness using TailwindCSS.
-- Optimized feedback loading and sorting for faster access.
-- Enhanced AI-driven feedback summarization.
+- **Rate Limiting**: Comprehensive rate limiting system to prevent abuse
+  - Feedback submission: 20 requests per minute per IP
+  - Authentication: 30 requests per minute per IP
+  - AI summaries: 10 requests per hour per user
+  - Project creation: 15 requests per hour per user
+- **Middleware**: Next.js middleware for API route protection
+- **Configuration**: Centralized configuration system (`lib/config.ts`)
+- **Documentation**: Comprehensive documentation including:
+  - API documentation (`docs/API.md`)
+  - Deployment guide (`docs/DEPLOYMENT.md`)
+  - Updated README with full setup instructions
 
-## Future Updates
+### Improved
 
-- **Integration of New Features**: Adding new feedback sorting algorithms (Planned).
-- **Enhanced AI Feedback Summaries**: Improved feedback summarization (Planned).
+- **Rate Limits**: Increased rate limits for better user experience
+  - Feedback submission: 5 → 20 requests per minute
+  - Authentication: 10 → 30 requests per minute
+  - AI summaries: 3 → 10 requests per hour
+  - Project creation: 5 → 15 requests per hour
+- **Error Handling**: Better error handling across all API routes and server actions
+- **Code Quality**: Cleaned up code and removed unnecessary complexity
+- **Authentication**: Improved error handling in auth configuration
+- **Type Safety**: Better TypeScript usage throughout the codebase
 
+### Security
+
+- Rate limiting protection against abuse
+- Improved input validation
+- Better error messages without exposing sensitive information
+- CORS headers properly configured
+
+### Technical Details
+
+- In-memory rate limiting (suitable for single-instance deployments)
+- Configurable rate limits via centralized config
+- Proper HTTP status codes and headers
+- Clean separation of concerns
+
+## [1.0.0] - 2024-01-XX
+
+### Initial Release
+
+- Basic feedback collection system
+- User authentication (email/password + Google OAuth)
+- Project management
+- Embeddable feedback widget
+- AI-powered feedback summaries
+- Modern UI with dark mode support
